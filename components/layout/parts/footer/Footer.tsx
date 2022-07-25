@@ -4,8 +4,6 @@ export const Footer = () => {
   return (
     <Box
       sx={{
-        position: 'fixed',
-        bottom: 0,
         width: '100%',
         backgroundColor: (theme) => theme.palette.primary.main,
       }}
