@@ -1,6 +1,8 @@
-import { createContext, ReactNode, useMemo, useState } from 'react'
+import { createContext, ReactNode, useEffect, useMemo, useState } from 'react'
 import { createTheme, ThemeOptions, ThemeProvider } from '@mui/material/styles'
 import { darkTheme, lightTheme } from '../themes'
+import { PaletteMode } from '@mui/material'
+import { lsGet, lsSet, LStorage } from '../localStorage'
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 export const ColorModeContext = createContext({ toggleColorMode: () => {} })
@@ -10,7 +12,9 @@ export const ThemeProviderWithColorMode = ({
 }: {
   children: ReactNode
 }) => {
-  const [mode, setMode] = useState<'light' | 'dark'>('dark')
+  const [mode, setMode] = useState<PaletteMode>(
+    lsGet(LStorage.colorMode) || 'light',
+  )
   const colorMode = useMemo(
     () => ({
       toggleColorMode: () => {
@@ -19,6 +23,10 @@ export const ThemeProviderWithColorMode = ({
     }),
     [],
   )
+
+  useEffect(() => {
+    lsSet(LStorage.colorMode, mode)
+  }, [mode])
 
   const theme = useMemo(() => {
     const themeScaffolders: ThemeOptions =

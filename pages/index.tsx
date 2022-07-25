@@ -1,22 +1,23 @@
-import { Button } from '@mui/material'
-import type { NextPage } from 'next'
+import type { GetStaticProps, NextPage } from 'next'
+import { About } from '../components/pages/about/About'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-const Home: NextPage = () => {
+const Home: NextPage = (props) => {
+  console.log('p:', props)
   return (
     <>
-      main file{' '}
-      <Button color="primary" variant="contained">
-        OK
-      </Button>
-      <Button color="success" variant="contained">
-        OK
-      </Button>
-      <Button color="error" variant="contained">
-        OK
-      </Button>
-      <Button>NO</Button>
+      <About />
     </>
   )
 }
+
+//TODO: check i18 types
+export const getStaticProps = async (
+  props: GetStaticProps & { locale: string },
+) => ({
+  props: {
+    ...(await serverSideTranslations(props.locale, ['common'])),
+  },
+})
 
 export default Home

@@ -1,8 +1,9 @@
 import Head from 'next/head'
+import { appWithTranslation } from 'next-i18next'
 import { CssBaseline } from '@mui/material'
-import type { AppProps } from 'next/app'
 import { Layout } from '../components/layout/Layout'
 import { ThemeProviderWithColorMode } from '../lib/context/ThemeProviderWithColorMode'
+import type { AppProps } from 'next/app'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -20,4 +21,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   )
 }
 
-export default MyApp
+export default appWithTranslation(MyApp)
