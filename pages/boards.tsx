@@ -1,13 +1,8 @@
-import Router from 'next/router'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { useEffect } from 'react'
 import type { GetStaticProps, NextPage } from 'next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-const Home: NextPage = () => {
-  useEffect(() => {
-    Router.push('/main')
-  }, [])
-  return <></>
+const Home: NextPage = (props) => {
+  return <>123</>
 }
 
 //TODO: check i18 types
