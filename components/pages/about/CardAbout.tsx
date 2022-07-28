@@ -7,9 +7,6 @@ export const CardAbout = (props: CardProps) => {
   const { component, src, reverse, text } = props
   const { t } = useTranslation()
 
-  console.log('1:', (reverse && 1) || 0)
-  console.log('2:', (reverse && 0) || 1)
-
   return (
     <Box
       className="CardAbout"
