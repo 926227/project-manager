@@ -1,13 +1,13 @@
 import { PaletteMode } from '@mui/material'
 
 export enum LStorage {
-  isCookieAccepted = 'isCookieAccepted',
+  pmToken = 'pmToken',
   locale = 'locale',
   colorMode = 'colorMode',
 }
 
 export type StorageTypes = {
-  [LStorage.isCookieAccepted]: boolean
+  [LStorage.pmToken]: string
   [LStorage.locale]: string
   [LStorage.colorMode]: PaletteMode
 }

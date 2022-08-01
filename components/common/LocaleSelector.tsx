@@ -19,7 +19,10 @@ export const LocaleSelector = () => {
         variant="standard"
         value={router.locale}
         onChange={handleChange}
-        sx={{ '&:before': { content: 'none' } }}
+        sx={{
+          '& .MuiInputBase-input': { pl: '8px' },
+          '&:before': { content: 'none' },
+        }}
       >
         <MenuItem value="ru">
           <Box

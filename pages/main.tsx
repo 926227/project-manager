@@ -1,8 +1,8 @@
 import type { GetStaticProps, NextPage } from 'next'
-import { About } from '../components/pages/about/About'
+import { About } from '../components/pages-blocks/about/About'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-const Home: NextPage = (props) => {
+const MainPage: NextPage = () => {
   return (
     <>
       <About />
@@ -19,4 +19,4 @@ export const getStaticProps = async (
   },
 })
 
-export default Home
+export default MainPage

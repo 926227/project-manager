@@ -4,7 +4,12 @@ import { useRouter } from 'next/router'
 import { useTheme } from '@mui/material/styles'
 import { NavLinkProps } from './types'
 
-export const NavLink = ({ children, href, ...otherProps }: NavLinkProps) => {
+export const NavLink = ({
+  children,
+  href,
+  sx,
+  ...otherProps
+}: NavLinkProps) => {
   const router = useRouter()
   const theme = useTheme()
 
@@ -14,15 +19,19 @@ export const NavLink = ({ children, href, ...otherProps }: NavLinkProps) => {
     <LinkNext href={href} passHref {...otherProps}>
       <LinkMUI
         sx={{
-          pl: 2,
-          color: isActive
-            ? theme.palette.secondary.main
-            : theme.palette.text.primary,
-          fontWeight: isActive ? 900 : 'none',
+          ml: 2,
+          color: theme.palette.secondary.main,
+          fontWeight: isActive ? 900 : 400,
           textDecoration: 'none',
+          transition: 'all 0.3s',
+          cursor: isActive ? 'default' : 'pointer',
           '&:hover': {
-            color: !isActive ? theme.palette.secondary.light : '',
+            color: isActive ? '' : theme.palette.secondary.light,
           },
+          boxShadow: isActive
+            ? `0px 2px ${theme.palette.secondary.main}`
+            : 'none',
+          ...sx,
         }}
       >
         {children}

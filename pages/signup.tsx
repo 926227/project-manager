@@ -1,10 +1,10 @@
 import type { GetStaticProps, NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { resetServerContext } from 'react-beautiful-dnd'
-import { Boards } from '../components/pages-blocks/boards/Boards'
+import { Authorization } from '../components/pages-blocks/signup/Signup'
 
-const BoardsPage: NextPage = () => {
-  return <Boards />
+const SigninPage: NextPage = () => {
+  return <Authorization variant="signup" />
 }
 
 //TODO: check i18 types
@@ -23,4 +23,4 @@ export const getStaticProps = async (
   }
 }
 
-export default BoardsPage
+export default SigninPage

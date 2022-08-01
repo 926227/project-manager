@@ -12,11 +12,12 @@ export const RouterLink = ({
   href,
   underline,
   color,
+  sx,
   ...otherProps
 }: React.PropsWithChildren<RouterLinkProps>) => {
   return (
-    <LinkNext href={href} passHref {...otherProps}>
-      <LinkMUI underline={underline} color={color}>
+    <LinkNext href={href} passHref>
+      <LinkMUI underline={underline} color={color} sx={sx} {...otherProps}>
         {children}
       </LinkMUI>
     </LinkNext>
