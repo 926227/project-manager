@@ -16,6 +16,21 @@ const palette = {
   success: {
     main: '#86a293',
   },
+  board: {
+    dark: '#73769d',
+    main: '#a2a5ce',
+    light: '#d4d6ff',
+  },
+  column: {
+    dark: '#c7cabc',
+    main: '#fafdee',
+    light: '#ffffff',
+  },
+  task: {
+    dark: '#b4bf70',
+    main: '#e7f29f',
+    light: '#ffffd1',
+  },
 }
 
 const typography: TypographyOptions = {}

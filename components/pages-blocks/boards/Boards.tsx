@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { DragDropContext, DropResult, Droppable } from 'react-beautiful-dnd'
+import { LayoutContainer } from '../../layout/common/LayoutContainer'
 import { Column } from './Column'
 import { initialData } from './mock'
 import { ContainerBoards } from './styles'
@@ -86,26 +87,37 @@ export const Boards = () => {
     setState(newState)
   }
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <Droppable droppableId="all-columns" direction="horizontal" type="column">
-        {(provided) => (
-          <ContainerBoards {...provided.droppableProps} ref={provided.innerRef}>
-            {state.columnOrder.map((columnId, index) => {
-              const column = state.columns[columnId]
-              const tasks = column.taskIds.map((taskId) => state.tasks[taskId])
-              return (
-                <Column
-                  key={column.id}
-                  column={column}
-                  tasks={tasks}
-                  index={index}
-                />
-              )
-            })}
-            {provided.placeholder}
-          </ContainerBoards>
-        )}
-      </Droppable>
-    </DragDropContext>
+    <LayoutContainer>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable
+          droppableId="all-columns"
+          direction="horizontal"
+          type="column"
+        >
+          {(provided) => (
+            <ContainerBoards
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+            >
+              {state.columnOrder.map((columnId, index) => {
+                const column = state.columns[columnId]
+                const tasks = column.taskIds.map(
+                  (taskId) => state.tasks[taskId],
+                )
+                return (
+                  <Column
+                    key={column.id}
+                    column={column}
+                    tasks={tasks}
+                    index={index}
+                  />
+                )
+              })}
+              {provided.placeholder}
+            </ContainerBoards>
+          )}
+        </Droppable>
+      </DragDropContext>
+    </LayoutContainer>
   )
 }

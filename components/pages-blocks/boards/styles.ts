@@ -1,34 +1,53 @@
 import styled from '@emotion/styled'
 
 export const TaskUI = styled.div<{ isDragging: boolean }>`
-  width: 200px;
-  border: 1px solid grey;
-  margin-bottom: 8px;
-  background-color: ${(props) => (props.isDragging ? 'lightgreen' : 'white')};
+  position: relative;
+  width: 100%;
+  min-height: 70px;
   padding: 8px;
+  margin-bottom: 8px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  background-color: ${({ isDragging, theme }) =>
+    isDragging ? theme.palette.task.dark : theme.palette.task.main};
 `
 
 export const ContainerColumn = styled.div`
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
   margin: 8px;
-  width: 250px;
+  width: 280px;
   border: 1px solid lightgrey;
-  border-radius: 2px;
-  background-color: white;
+  border-radius: 5px;
+  background-color: ${({ theme }) => theme.palette.background.paper};
+  box-shadow: ${({ theme }) => theme.shadows[1]};
 `
 
 export const ContainerBoards = styled.div`
   display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 `
 
 export const Title = styled.h3`
-  padding: 8px;
+  position: relative;
+  margin: 0;
+  padding: 16px 8px;
+  min-height: 70px;
+  color: ${({ theme }) => theme.palette.primary.contrastText};
+  background-color: ${({ theme }) => theme.palette.board.main};
+  transition: all 0.3s;
+  &:hover,
+  &:active {
+    background-color: ${({ theme }) => theme.palette.board.dark};
+  }
 `
 export const TaskList = styled.div<{ isDraggingOver: boolean }>`
   flex-grow: 1;
-  padding: 8px;
+  padding: 16px;
   min-height: 100px;
   transition: background-color 0.2s ease;
-  background-color: ${(props) => (props.isDraggingOver ? 'skyblue' : 'white')};
+  background-color: ${({ isDraggingOver, theme }) =>
+    isDraggingOver ? theme.palette.column.dark : theme.palette.column.main};
 `
