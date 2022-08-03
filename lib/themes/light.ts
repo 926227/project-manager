@@ -1,5 +1,6 @@
 import { Components, ThemeOptions, PaletteMode } from '@mui/material'
 import { TypographyOptions } from '@mui/material/styles/createTypography'
+import { constants } from '../constants'
 
 const palette = {
   mode: 'light' as PaletteMode,
@@ -40,6 +41,7 @@ const components: Components = {
     styleOverrides: {
       root: {
         color: palette.primary.contrastText,
+        height: constants.toolbarHeight,
       },
     },
   },

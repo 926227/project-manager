@@ -1,5 +1,5 @@
 import LoadingButton from '@mui/lab/LoadingButton'
-import { ApiUrls } from '../../../lib/ApiUrls'
+import { ApiUrls } from '../../../lib/fetch/ApiUrls'
 import { SignupInputs } from './types'
 import { AxiosError, AxiosResponse } from 'axios'
 import { Box, Paper, Stack, TextField, Typography } from '@mui/material'
@@ -13,10 +13,10 @@ import { post } from '../../../lib/fetch/requests'
 import { RouterLink } from '../../common/router-link'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'next-i18next'
-import { useInfoModal } from '../../../lib/modals/InfoModal'
+import { useInfoModal } from '../../../lib/modals/useInfoModal'
 import { useRouter } from 'next/router'
 
-export const Authorization = () => {
+export const Signup = () => {
   const isAuth = useCheckAuthStatus()
   const router = useRouter()
   const { t } = useTranslation()

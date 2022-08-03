@@ -9,6 +9,7 @@
   "User was not founded!": "User was not founded!",
   "change_to_signup": "No account? <lnk>Signin</lnk>",
   "change_to_signin": "Already registered? <lnk>Signin</lnk>",
+  "add_column": "Add column",
   "modals": {
     "info": "Information",
     "error": "Error"

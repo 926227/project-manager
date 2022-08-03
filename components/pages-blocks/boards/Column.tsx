@@ -11,11 +11,21 @@ export const Column = React.memo(function Column(props: ColumnContainerProps) {
   const { column, index } = props
   return (
     <Draggable draggableId={column.id} index={index}>
-      {(provided) => (
-        <ContainerColumn ref={provided.innerRef} {...provided.draggableProps}>
+      {(provided, snapshot) => (
+        <ContainerColumn
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          isDragging={snapshot.isDragging}
+        >
           <Title {...provided.dragHandleProps}>
             {props.column.title}{' '}
-            <Stack sx={{ position: 'absolute', right: 0, top: 0 }}>
+            <Stack
+              sx={{
+                position: 'absolute',
+                right: 0,
+                top: 0,
+              }}
+            >
               <IconButton size="small" sx={{ color: '#5f7266' }}>
                 <SourceIcon />
               </IconButton>

@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
-import { prependPrefix } from '../ApiUrls'
+import { prependPrefix } from './ApiUrls'
 
 export const get = <Data = unknown, R = AxiosResponse<Data>>(
   url: string,
@@ -16,12 +16,12 @@ export const post = <Data = unknown, R = AxiosResponse<Data>>(
   return axios.post<Data, R>(prependPrefix(url), data, config)
 }
 
-export const patch = <Data = unknown, R = AxiosResponse<Data>>(
+export const put = <Data = unknown, R = AxiosResponse<Data>>(
   url: string,
   data?: unknown,
   config?: AxiosRequestConfig,
 ): Promise<R> => {
-  return axios.patch<Data, R>(prependPrefix(url), data, config)
+  return axios.put<Data, R>(prependPrefix(url), data, config)
 }
 
 export const delete_ = <Data = unknown, R = AxiosResponse<Data>>(

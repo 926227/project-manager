@@ -1,5 +1,5 @@
 import LoadingButton from '@mui/lab/LoadingButton'
-import { ApiUrls } from '../../../lib/ApiUrls'
+import { ApiUrls } from '../../../lib/fetch/ApiUrls'
 import { SigninInputs } from './types'
 import { AxiosError, AxiosResponse } from 'axios'
 import { Box, Paper, Stack, TextField, Typography } from '@mui/material'
@@ -9,7 +9,7 @@ import { post } from '../../../lib/fetch/requests'
 import { RouterLink } from '../../common/router-link'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'next-i18next'
-import { useInfoModal } from '../../../lib/modals/InfoModal'
+import { useInfoModal } from '../../../lib/modals/useInfoModal'
 import { useRouter } from 'next/router'
 
 export const Signin = () => {
@@ -33,6 +33,7 @@ export const Signin = () => {
     try {
       response = await post<SigninResponse>(ApiUrls.signin, data)
     } catch (e) {
+      //TODO: add  type safety with if (axios.isAxiosError(error)) {}
       const error = e as AxiosError<ErrorResponse>
       if (error.response && error.response.data) {
         openInfoModal({ info: error.response.data.message, error: true })

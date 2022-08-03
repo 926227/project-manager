@@ -5,6 +5,7 @@ export const TaskUI = styled.div<{ isDragging: boolean }>`
   width: 100%;
   min-height: 70px;
   padding: 8px;
+  padding-right: 36px;
   margin-bottom: 8px;
   border: 1px solid grey;
   border-radius: 5px;
@@ -12,22 +13,26 @@ export const TaskUI = styled.div<{ isDragging: boolean }>`
     isDragging ? theme.palette.task.dark : theme.palette.task.main};
 `
 
-export const ContainerColumn = styled.div`
+export const ContainerColumn = styled.div<{ isDragging: boolean }>`
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
   margin: 8px;
   width: 280px;
+  overflow-y: auto;
   border: 1px solid lightgrey;
   border-radius: 5px;
   background-color: ${({ theme }) => theme.palette.background.paper};
-  box-shadow: ${({ theme }) => theme.shadows[1]};
+  box-shadow: ${({ isDragging, theme }) =>
+    isDragging ? theme.shadows[6] : theme.shadows[1]};
 `
 
 export const ContainerBoards = styled.div`
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  justify-content: start;
+  overflow: auto;
+  max-height: 100%;
+  height: 100%;
 `
 
 export const Title = styled.h3`

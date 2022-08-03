@@ -6,21 +6,7 @@ import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import { useState } from 'react'
 import { useTranslation } from 'next-i18next'
-
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'start',
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-}
+import { modalBoxStyle } from './styles'
 
 export const useInfoModal = () => {
   const { t } = useTranslation()
@@ -58,7 +44,7 @@ export const useInfoModal = () => {
         }}
       >
         <Fade in={open}>
-          <Box sx={style}>
+          <Box sx={modalBoxStyle}>
             <Typography
               id="transition-modal-title"
               variant="h6"

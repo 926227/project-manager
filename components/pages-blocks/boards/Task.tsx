@@ -1,11 +1,12 @@
-import { Draggable } from 'react-beautiful-dnd'
-import { TaskUI } from './styles'
-import { TaskContainerProps } from './types'
-import DeleteIcon from '@mui/icons-material/Delete'
-import { IconButton, Stack } from '@mui/material'
 import BorderColorIcon from '@mui/icons-material/BorderColor'
+import DeleteIcon from '@mui/icons-material/Delete'
+import { Draggable } from 'react-beautiful-dnd'
+import { IconButton, Stack, Typography } from '@mui/material'
+import { TaskContainerProps } from './types'
+import { TaskUI } from './styles'
 
 export const Task = ({ task, index }: TaskContainerProps) => {
+  const { title, content } = task
   return (
     <Draggable draggableId={task.id} index={index}>
       {(provided, snapshot) => (
@@ -15,7 +16,8 @@ export const Task = ({ task, index }: TaskContainerProps) => {
           {...provided.dragHandleProps}
           isDragging={snapshot.isDragging}
         >
-          {task.content}
+          <Typography variant="h6">{title}</Typography>
+          <Typography paragraph>{content}</Typography>
           <Stack sx={{ position: 'absolute', right: 0, top: 0 }}>
             <IconButton color="success" size="small">
               <BorderColorIcon />

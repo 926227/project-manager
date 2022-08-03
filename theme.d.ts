@@ -13,6 +13,24 @@ declare module '@mui/material/styles' {
   }
 }
 
+// Update the Button's color prop options
+declare module '@mui/material/Button' {
+  interface ButtonPropsColorOverrides {
+    board: true
+    column: true
+    task: true
+  }
+}
+
+// Update the SvgIcon's color prop options
+declare module '@mui/material/SvgIcon' {
+  interface SvgIconPropsColorOverrides {
+    board: true
+    column: true
+    task: true
+  }
+}
+
 declare module '@emotion/react' {
   export interface Theme extends MUITheme {}
 }
