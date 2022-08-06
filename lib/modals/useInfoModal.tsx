@@ -33,8 +33,6 @@ export const useInfoModal = () => {
   const infoModal = (
     <div>
       <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
         open={open}
         onClose={handleClose}
         closeAfterTransition
@@ -46,7 +44,6 @@ export const useInfoModal = () => {
         <Fade in={open}>
           <Box sx={modalBoxStyle}>
             <Typography
-              id="transition-modal-title"
               variant="h6"
               component="h2"
               color={error ? 'error' : 'inherit'}

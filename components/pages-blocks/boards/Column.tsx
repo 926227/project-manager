@@ -1,14 +1,18 @@
-import { IconButton, Stack } from '@mui/material'
-import React from 'react'
-import { Droppable, Draggable } from 'react-beautiful-dnd'
-import { ContainerColumn, TaskList, Title } from './styles'
-import { Task } from './Task'
-import { ColumnContainerProps } from './types'
 import FolderDeleteIcon from '@mui/icons-material/FolderDelete'
+import React from 'react'
 import SourceIcon from '@mui/icons-material/Source'
+import Tooltip from '@mui/material/Tooltip'
+import { ColumnProps } from './types'
+import { ContainerColumn, TaskList, Title } from './styles'
+import { Draggable, Droppable } from 'react-beautiful-dnd'
+import { IconButton, Stack } from '@mui/material'
+import { Task } from './Task'
+import { useTranslation } from 'next-i18next'
 
-export const Column = React.memo(function Column(props: ColumnContainerProps) {
+export const Column = React.memo(function Column(props: ColumnProps) {
   const { column, index } = props
+  const { t } = useTranslation()
+
   return (
     <Draggable draggableId={column.id} index={index}>
       {(provided, snapshot) => (
@@ -26,12 +30,16 @@ export const Column = React.memo(function Column(props: ColumnContainerProps) {
                 top: 0,
               }}
             >
-              <IconButton size="small" sx={{ color: '#5f7266' }}>
-                <SourceIcon />
-              </IconButton>
-              <IconButton color="error" size="small">
-                <FolderDeleteIcon />
-              </IconButton>
+              <Tooltip title={t('column.edit')}>
+                <IconButton size="small" sx={{ color: '#5f7266' }}>
+                  <SourceIcon />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title={t('column.delete')}>
+                <IconButton color="error" size="small">
+                  <FolderDeleteIcon />
+                </IconButton>
+              </Tooltip>
             </Stack>
           </Title>
           <Droppable droppableId={props.column.id} type="task">

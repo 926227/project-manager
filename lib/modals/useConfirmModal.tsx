@@ -6,22 +6,20 @@ import Button from '@mui/material/Button'
 import { useState } from 'react'
 import { modalBoxStyle } from './styles'
 
-export const useColumnModal = () => {
+export const useConfirmModal = () => {
   const [open, setOpen] = useState(false)
 
   const handleClose = () => {
     setOpen(false)
   }
 
-  const openColumnModal = () => {
+  const openModal = () => {
     setOpen(true)
   }
 
-  const columnModal = (
+  const modal = (
     <div>
       <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
         open={open}
         onClose={handleClose}
         closeAfterTransition
@@ -46,7 +44,7 @@ export const useColumnModal = () => {
   )
 
   return {
-    infoModal: columnModal,
-    openInfoModal: openColumnModal,
+    openModal,
+    modal,
   }
 }

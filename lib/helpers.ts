@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react'
 import { BoardDto } from './fetch/types'
 import {
   BoardData,
-  ColumnInfo,
-  TaskInfo,
+  ColumnData,
+  TaskData,
 } from '../components/pages-blocks/boards'
 import { AxiosRequestConfig } from 'axios'
 
@@ -43,8 +43,8 @@ export const logout = () => {
 }
 
 export const orderBoardToBrowser = (data: BoardDto): BoardData => {
-  const tasks: Record<string, TaskInfo> = {}
-  const columns: Record<string, ColumnInfo> = {}
+  const tasks: Record<string, TaskData> = {}
+  const columns: Record<string, ColumnData> = {}
 
   data.columns.forEach((column) => {
     //create tasks
@@ -72,3 +72,6 @@ export const orderBoardToBrowser = (data: BoardDto): BoardData => {
   const { id, title, description } = data
   return { id, title, description, tasks, columns, columnOrder }
 }
+
+export type MakeRequired<T, K extends keyof T> = Omit<T, K> &
+  Required<{ [P in K]: T[P] }>

@@ -9,7 +9,14 @@
   "User was not founded!": "User was not founded!",
   "change_to_signup": "No account? <lnk>Signin</lnk>",
   "change_to_signin": "Already registered? <lnk>Signin</lnk>",
-  "add_column": "Add column",
+  "create": "Create",
+  "column": {
+    "add": "Add column",
+    "title": "Column title",
+    "create": "Create column",
+    "edit": "Edit column",
+    "delete": "Delete column"
+  },
   "modals": {
     "info": "Information",
     "error": "Error"

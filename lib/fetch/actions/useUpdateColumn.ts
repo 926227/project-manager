@@ -2,17 +2,14 @@ import { useState } from 'react'
 import { ApiUrls } from '../ApiUrls'
 import { put } from '../requests'
 import { getRequestConfigWithToken } from '../../helpers'
+import { UpdateColumnInfo } from '../../../components/pages-blocks/boards'
 
-export const useUpdateColumnPosition = () => {
+export const useUpdateColumn = () => {
   const [isUpdating, setIsUpdating] = useState(false)
 
-  const updateColumnPosition = async (
-    boardId: string,
-    columnId: string,
-    title: string,
-    order: number,
-  ) => {
+  const updateColumn = async (column: UpdateColumnInfo) => {
     setIsUpdating(true)
+    const { boardId, columnId, title, order } = column
 
     const patchedOrder = order + 1
     await put(
@@ -27,5 +24,5 @@ export const useUpdateColumnPosition = () => {
     setIsUpdating(false)
   }
 
-  return { isUpdating, updateColumnPosition }
+  return { isUpdating, updateColumn }
 }

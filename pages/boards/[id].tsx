@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import { useBoard } from '../../lib/fetch/data/useBoard'
 import { Loader } from '../../components/common/Loader/Loader'
 import { useUpdateTaskPosition } from '../../lib/fetch/actions/useUpdateTaskPosition'
-import { useUpdateColumnPosition } from '../../lib/fetch/actions/useUpdateColumnPosition'
+import { useUpdateColumn } from '../../lib/fetch/actions/useUpdateColumn'
 
 const BoardPage: NextPage = () => {
   const router = useRouter()
@@ -16,8 +16,7 @@ const BoardPage: NextPage = () => {
   const { board, isLoading, isError } = useBoard(boardId)
   const { isUpdating: taskUpdating, updateTaskPosition } =
     useUpdateTaskPosition()
-  const { isUpdating: columnUpdating, updateColumnPosition } =
-    useUpdateColumnPosition()
+  const { isUpdating: columnUpdating, updateColumn } = useUpdateColumn()
   const isUpdating = taskUpdating || columnUpdating
 
   if (isLoading) {
@@ -32,7 +31,7 @@ const BoardPage: NextPage = () => {
   return (
     <>
       {isUpdating && <Loader />}
-      <Board {...{ board, updateTaskPosition, updateColumnPosition }} />
+      <Board {...{ board, updateTaskPosition, updateColumn }} />
     </>
   )
 }

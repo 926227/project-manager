@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { TaskPosition } from '../../../components/pages-blocks/boards'
+import { UpdateTaskInfo } from '../../../components/pages-blocks/boards'
 import { ApiUrls } from '../ApiUrls'
 import { get, put } from '../requests'
 import { TaskDto } from '../types'
@@ -9,8 +9,8 @@ export const useUpdateTaskPosition = () => {
   const [isUpdating, setIsUpdating] = useState(false)
 
   const updateTaskPosition = async (
-    start: TaskPosition,
-    finish: TaskPosition,
+    start: UpdateTaskInfo,
+    finish: UpdateTaskInfo,
   ) => {
     setIsUpdating(true)
 

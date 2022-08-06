@@ -2,10 +2,10 @@ import BorderColorIcon from '@mui/icons-material/BorderColor'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { Draggable } from 'react-beautiful-dnd'
 import { IconButton, Stack, Typography } from '@mui/material'
-import { TaskContainerProps } from './types'
+import { TaskProps } from './types'
 import { TaskUI } from './styles'
 
-export const Task = ({ task, index }: TaskContainerProps) => {
+export const Task = ({ task, index }: TaskProps) => {
   const { title, content } = task
   return (
     <Draggable draggableId={task.id} index={index}>
