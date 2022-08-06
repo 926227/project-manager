@@ -4,7 +4,7 @@ import { OverridableComponent } from '@mui/material/OverridableComponent'
 import { ReactNode } from 'react'
 
 type LayoutContainerProps = Omit<
-  OverridableComponent<BoxTypeMap<{}, 'div'>>,
+  OverridableComponent<BoxTypeMap<Record<string, unknown>, 'div'>>,
   'children'
 > & {
   sx?: SxProps

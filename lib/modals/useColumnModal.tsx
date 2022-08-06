@@ -3,13 +3,10 @@ import Box from '@mui/material/Box'
 import Modal from '@mui/material/Modal'
 import Fade from '@mui/material/Fade'
 import Button from '@mui/material/Button'
-import Typography from '@mui/material/Typography'
 import { useState } from 'react'
-import { useTranslation } from 'next-i18next'
 import { modalBoxStyle } from './styles'
 
 export const useColumnModal = () => {
-  const { t } = useTranslation()
   const [open, setOpen] = useState(false)
 
   const handleClose = () => {

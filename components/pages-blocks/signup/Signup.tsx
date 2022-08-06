@@ -39,10 +39,9 @@ export const Signup = () => {
       password: signupData.password,
     }
 
-    let signupResponse: AxiosResponse<SignupResponse>
     let signinResponse: AxiosResponse<SigninResponse>
     try {
-      signupResponse = await post<SignupResponse>(ApiUrls.signup, signupData)
+      await post<SignupResponse>(ApiUrls.signup, signupData)
       signinResponse = await post<SigninResponse>(ApiUrls.signin, signinData)
     } catch (e) {
       const error = e as AxiosError<ErrorResponse>

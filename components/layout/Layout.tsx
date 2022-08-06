@@ -1,5 +1,5 @@
 import { Box } from '@mui/system'
-import { Footer, Header, Main } from './parts'
+import { Header, Main } from './parts'
 import { LayoutProps } from './types'
 
 export const Layout = ({ children }: LayoutProps) => {
@@ -7,7 +7,6 @@ export const Layout = ({ children }: LayoutProps) => {
     <Box>
       <Header />
       <Main>{children}</Main>
-      {/* <Footer /> */}
     </Box>
   )
 }
