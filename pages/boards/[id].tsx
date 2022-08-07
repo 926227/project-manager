@@ -7,17 +7,38 @@ import { useBoard } from '../../lib/fetch/data/useBoard'
 import { Loader } from '../../components/common/Loader/Loader'
 import { useUpdateTaskPosition } from '../../lib/fetch/actions/useUpdateTaskPosition'
 import { useUpdateColumn } from '../../lib/fetch/actions/useUpdateColumn'
+import { delete_ } from '../../lib/fetch/requests'
+import { ApiUrls } from '../../lib/fetch/ApiUrls'
+import { getRequestConfigWithToken } from '../../lib/helpers'
+import { useConfirmModal } from '../../lib/modals/useConfirmModal'
+import { useTranslation } from 'next-i18next'
 
 const BoardPage: NextPage = () => {
+  const { t } = useTranslation()
   const router = useRouter()
   const { id } = router.query
   const boardId = typeof id === 'string' ? id : ''
 
-  const { board, isLoading, isError } = useBoard(boardId)
+  const { board, isLoading, isError, reloadBoard } = useBoard(boardId)
+  const { modal: ConfirmModal, openModal: openConfirmModal } = useConfirmModal()
+
   const { isUpdating: taskUpdating, updateTaskPosition } =
     useUpdateTaskPosition()
   const { isUpdating: columnUpdating, updateColumn } = useUpdateColumn()
   const isUpdating = taskUpdating || columnUpdating
+
+  const deleteColumn = (columnId: string, title: string) => {
+    const yes = async () => {
+      await delete_(
+        ApiUrls.Board.column(boardId, columnId),
+        getRequestConfigWithToken(),
+      )
+      reloadBoard(undefined, true)
+    }
+
+    const message = `${t('column.delete')} ${title}?`
+    openConfirmModal({ message, yes })
+  }
 
   if (isLoading) {
     return <Loader />
@@ -31,7 +52,17 @@ const BoardPage: NextPage = () => {
   return (
     <>
       {isUpdating && <Loader />}
-      <Board {...{ board, updateTaskPosition, updateColumn }} />
+      <button onClick={() => reloadBoard(undefined, true)}>reload</button>
+      <Board
+        {...{
+          board,
+          updateTaskPosition,
+          updateColumn,
+          reloadBoard,
+          deleteColumn,
+        }}
+      />
+      {ConfirmModal}
     </>
   )
 }

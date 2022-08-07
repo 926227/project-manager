@@ -10,16 +10,21 @@
   "change_to_signup": "No account? <lnk>Signin</lnk>",
   "change_to_signin": "Already registered? <lnk>Signin</lnk>",
   "create": "Create",
+  "save": "Save",
+  "yes": "Yes",
+  "no": "No",
   "column": {
     "add": "Add column",
     "title": "Column title",
     "create": "Create column",
+    "created": "Column created",
     "edit": "Edit column",
     "delete": "Delete column"
   },
   "modals": {
     "info": "Information",
-    "error": "Error"
+    "error": "Error",
+    "please_confirm": "Pleas confirm"
   },
   "menu": {
     "main": "Main",

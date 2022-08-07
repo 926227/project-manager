@@ -12,14 +12,19 @@ import { useColumnModal } from './forms/ColumnModal'
 import { useTranslation } from 'next-i18next'
 
 export const Board = (props: BoardProps) => {
-  const { board } = props
+  const { board, updateColumn, reloadBoard, deleteColumn } = props
   const { title, description } = board
   const { t } = useTranslation()
 
   const { state, onDragEnd } = useBoardLogic(props)
   const { modal: ColumnModal, openModal: openColumnModal } = useColumnModal({
-    boardId: board.id,
+    updateColumn,
+    reloadBoard,
   })
+
+  const handleOpenColumnModal = () => {
+    openColumnModal({ boardId: board.id, title: '' })
+  }
 
   return (
     <>
@@ -44,7 +49,7 @@ export const Board = (props: BoardProps) => {
               variant="outlined"
               size="large"
               startIcon={<AddIcon />}
-              onClick={openColumnModal}
+              onClick={handleOpenColumnModal}
             >
               {t('column.add')}
             </Button>
@@ -73,6 +78,8 @@ export const Board = (props: BoardProps) => {
                       tasks={tasks}
                       index={index}
                       boardId={board.id}
+                      editColumn={openColumnModal}
+                      deleteColumn={deleteColumn}
                     />
                   )
                 })}

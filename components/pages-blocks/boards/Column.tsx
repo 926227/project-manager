@@ -10,11 +10,20 @@ import { Task } from './Task'
 import { useTranslation } from 'next-i18next'
 
 export const Column = React.memo(function Column(props: ColumnProps) {
-  const { column, index } = props
+  const { column, index, tasks, boardId, editColumn, deleteColumn } = props
+  const { id, title } = column
   const { t } = useTranslation()
 
+  const handleEditColumn = () => {
+    editColumn({ boardId, title, columnId: id, order: index })
+  }
+
+  const handleDeleteColumn = () => {
+    deleteColumn(id, title)
+  }
+
   return (
-    <Draggable draggableId={column.id} index={index}>
+    <Draggable draggableId={id} index={index}>
       {(provided, snapshot) => (
         <ContainerColumn
           ref={provided.innerRef}
@@ -22,7 +31,7 @@ export const Column = React.memo(function Column(props: ColumnProps) {
           isDragging={snapshot.isDragging}
         >
           <Title {...provided.dragHandleProps}>
-            {props.column.title}{' '}
+            {title}{' '}
             <Stack
               sx={{
                 position: 'absolute',
@@ -31,25 +40,33 @@ export const Column = React.memo(function Column(props: ColumnProps) {
               }}
             >
               <Tooltip title={t('column.edit')}>
-                <IconButton size="small" sx={{ color: '#5f7266' }}>
+                <IconButton
+                  size="small"
+                  sx={{ color: '#5f7266' }}
+                  onClick={handleEditColumn}
+                >
                   <SourceIcon />
                 </IconButton>
               </Tooltip>
               <Tooltip title={t('column.delete')}>
-                <IconButton color="error" size="small">
+                <IconButton
+                  color="error"
+                  size="small"
+                  onClick={handleDeleteColumn}
+                >
                   <FolderDeleteIcon />
                 </IconButton>
               </Tooltip>
             </Stack>
           </Title>
-          <Droppable droppableId={props.column.id} type="task">
+          <Droppable droppableId={id} type="task">
             {(provided, snapshot) => (
               <TaskList
                 ref={provided.innerRef}
                 {...provided.droppableProps}
                 isDraggingOver={snapshot.isDraggingOver}
               >
-                {props.tasks.map((task, index) => (
+                {tasks.map((task, index) => (
                   <Task key={task.id} task={task} index={index} />
                 ))}
                 {provided.placeholder}

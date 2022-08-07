@@ -1,3 +1,5 @@
+import { AxiosResponse } from 'axios'
+import { KeyedMutator } from 'swr'
 import { BoardThumbnailDto } from '../../../lib/fetch/types'
 
 //Board
@@ -7,7 +9,9 @@ export type BoardProps = {
     start: UpdateTaskInfo,
     finish: UpdateTaskInfo,
   ) => Promise<void>
-  updateColumn: (column: UpdateColumnInfo) => Promise<void>
+  updateColumn: (column: UpdateColumnInfo) => Promise<AxiosResponse>
+  reloadBoard: KeyedMutator<AxiosResponse>
+  deleteColumn: (columnId: string, title: string) => void
 }
 
 export type BoardData = {
@@ -31,6 +35,8 @@ export type ColumnProps = {
   tasks: TaskData[]
   index: number
   boardId: string
+  editColumn: (column: UpdateColumnInfo) => void
+  deleteColumn: (columnId: string, title: string) => void
 }
 
 export type ColumnData = {
@@ -41,9 +47,9 @@ export type ColumnData = {
 
 export type UpdateColumnInfo = {
   boardId: string
-  columnId: string
   title: string
-  order: number
+  columnId?: string
+  order?: number
 }
 
 //Task
@@ -63,4 +69,13 @@ export type UpdateTaskInfo = {
   columnId: string
   taskId: string
   order: number
+}
+
+//Modals
+export type UseColumnModalProps = {
+  updateColumn: (column: UpdateColumnInfo) => Promise<AxiosResponse>
+  reloadBoard: KeyedMutator<AxiosResponse>
+}
+export type ColumnModalInputs = {
+  title: string
 }

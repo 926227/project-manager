@@ -1,12 +1,12 @@
 import Backdrop from '@mui/material/Backdrop'
 import Box from '@mui/material/Box'
-import Modal from '@mui/material/Modal'
-import Fade from '@mui/material/Fade'
 import Button from '@mui/material/Button'
+import Fade from '@mui/material/Fade'
+import Modal from '@mui/material/Modal'
 import Typography from '@mui/material/Typography'
+import { modalBoxStyle } from './styles'
 import { useState } from 'react'
 import { useTranslation } from 'next-i18next'
-import { modalBoxStyle } from './styles'
 
 export const useInfoModal = () => {
   const { t } = useTranslation()
