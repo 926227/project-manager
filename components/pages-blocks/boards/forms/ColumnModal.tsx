@@ -38,6 +38,7 @@ export const useColumnModal = ({
     register,
     handleSubmit,
     setValue,
+    reset,
     formState: { errors },
   } = useForm<ColumnModalInputs>({
     defaultValues,
@@ -74,6 +75,7 @@ export const useColumnModal = ({
   const handleClose = () => {
     setColumn(null)
     setOpen(false)
+    reset()
   }
 
   const openModal = (column: UpdateColumnInfo) => {
@@ -115,6 +117,9 @@ export const useColumnModal = ({
                 />
               </CardContent>
               <CardActions sx={{ justifyContent: 'end' }}>
+                <Button variant="outlined" sx={{ mr: 1 }} onClick={handleClose}>
+                  {t('cancel')}
+                </Button>
                 <Button variant="contained" type="submit">
                   {column && column.columnId ? t('save') : t('create')}
                 </Button>
